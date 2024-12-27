@@ -2,13 +2,15 @@ group 'com.hackthedeveloper.live_icon'
 version '1.0'
 
 buildscript {
+    ext.kotlin_version = '1.9.10'
     repositories {
         google()
         jcenter()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.0'
+        classpath 'com.android.tools.build:gradle:8.1.4'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
@@ -20,11 +22,22 @@ rootProject.allprojects {
 }
 
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 34
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
 
     defaultConfig {
-        minSdkVersion 16
+        namespace "com.hackthedeveloper.live_icon"
+        minSdkVersion 23
     }
 }
