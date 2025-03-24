@@ -63,14 +63,8 @@ public class LiveIconPlugin implements FlutterPlugin, ActivityAware {
   }
 
   private void teardownChannel() {
-    if (channel != null) {
-      channel.setMethodCallHandler(null);
-      channel = null;
-    }
-
-    if(handler != null) {
-      handler.setMethodCallHandler(null);
-      handler = null;
-    }
+    channel.setMethodCallHandler(null);
+    channel = null;
+    handler = null;
   }
 }
