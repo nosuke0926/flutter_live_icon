@@ -26,12 +26,6 @@ public class LiveIconPlugin implements FlutterPlugin, ActivityAware {
   private MethodChannel channel;
   private MethodCallImplementation handler;
 
-  @SuppressWarnings("deprecation")
-  public static void registerWith(io.flutter.plugin.common.PluginRegistry.Registrar registrar) {
-    final LiveIconPlugin plugin = new LiveIconPlugin();
-    plugin.setupChannel(registrar.messenger(), registrar.context(), registrar.activity());
-  }
-
   @Override
   public void onAttachedToEngine(@NonNull FlutterPluginBinding binding) {
     setupChannel(binding.getBinaryMessenger(), binding.getApplicationContext(), null);
@@ -69,8 +63,14 @@ public class LiveIconPlugin implements FlutterPlugin, ActivityAware {
   }
 
   private void teardownChannel() {
-    channel.setMethodCallHandler(null);
-    channel = null;
-    handler = null;
+    if (channel != null) {
+      channel.setMethodCallHandler(null);
+      channel = null;
+    }
+
+    if(handler != null) {
+      handler.setMethodCallHandler(null);
+      handler = null;
+    }
   }
 }

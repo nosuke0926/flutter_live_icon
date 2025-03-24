@@ -25,6 +25,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
+    namespace "com.hackthedeveloper.live_icon"
     compileSdkVersion 34
 
     compileOptions {
@@ -37,7 +38,6 @@ android {
     }
 
     defaultConfig {
-        namespace "com.hackthedeveloper.live_icon"
         minSdkVersion 23
     }
 }
